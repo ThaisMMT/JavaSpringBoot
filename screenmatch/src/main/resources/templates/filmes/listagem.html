@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nx/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+<head>
+    <title>Lista de Filmes</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+<h1>Lista de filmes</h1>
+    <a href="/filmes/formularios">Novo</a>
+    <table>
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Duração</th>
+        <th>Ano de lançamento</th>
+        <th>Genero</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="filme : ${lista}">
+            <td th:text="${filme.nome}"></td>
+            <td th:text="${filme.duracaoEmMinutos}"></td>
+            <td th:text="${filme.ano}"></td>
+            <td th:text="${filme.genero}"></td>
+            <td>
+                <form action="/filmes" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="submit" value="Excluir">
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>
